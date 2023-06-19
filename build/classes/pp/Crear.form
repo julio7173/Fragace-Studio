@@ -148,6 +148,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="per1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="per2">
           <Properties>
@@ -157,6 +160,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="per2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="per3">
           <Properties>
@@ -166,6 +172,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="per3ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="per4">
           <Properties>
@@ -175,6 +184,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="per4ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

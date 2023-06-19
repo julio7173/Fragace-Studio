@@ -1,10 +1,7 @@
 package pp;
 
 import java.awt.BorderLayout;
-import java.awt.Image;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ManuApp extends javax.swing.JFrame {
