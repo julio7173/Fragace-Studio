@@ -4,13 +4,13 @@
  */
 package pp;
 
-import java.awt.BorderLayout;
 import java.awt.Image;
 import java.io.File;
 import java.util.HashMap;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -26,6 +26,11 @@ public class Crear extends javax.swing.JPanel {
      */
     public Crear() {
         initComponents();
+        prueba.setVisible(false);
+        per1.setVisible(false);
+        per2.setVisible(false);
+        per3.setVisible(false);
+        per4.setVisible(false);
         
         // Este bloque inicializa el mapa con los nombres y las frecuencias de los perfumes
         mapa = new HashMap();
@@ -33,6 +38,7 @@ public class Crear extends javax.swing.JPanel {
         mapa.put("PCi2", 0);
         mapa.put("PCu1", 0);
         mapa.put("PCu2", 0);
+        
     }
 
     /**
@@ -47,6 +53,11 @@ public class Crear extends javax.swing.JPanel {
         btnBuscar = new javax.swing.JButton();
         btnSeleccionar = new javax.swing.JButton();
         perfumes = new javax.swing.JPanel();
+        prueba = new javax.swing.JLabel();
+        per1 = new javax.swing.JButton();
+        per2 = new javax.swing.JButton();
+        per3 = new javax.swing.JButton();
+        per4 = new javax.swing.JButton();
 
         btnBuscar.setBackground(new java.awt.Color(102, 102, 102));
         btnBuscar.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
@@ -62,18 +73,60 @@ public class Crear extends javax.swing.JPanel {
         btnSeleccionar.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         btnSeleccionar.setForeground(new java.awt.Color(0, 0, 0));
         btnSeleccionar.setText("SELECCIONAR");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
 
         perfumes.setBackground(new java.awt.Color(255, 255, 255));
+
+        prueba.setBackground(new java.awt.Color(204, 255, 153));
+        prueba.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        per1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        per2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        per3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        per4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout perfumesLayout = new javax.swing.GroupLayout(perfumes);
         perfumes.setLayout(perfumesLayout);
         perfumesLayout.setHorizontalGroup(
             perfumesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(perfumesLayout.createSequentialGroup()
+                .addGap(209, 209, 209)
+                .addComponent(prueba, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(perfumesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(perfumesLayout.createSequentialGroup()
+                    .addGap(58, 58, 58)
+                    .addComponent(per1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(per2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(per3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(per4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(58, Short.MAX_VALUE)))
         );
         perfumesLayout.setVerticalGroup(
             perfumesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 418, Short.MAX_VALUE)
+            .addGroup(perfumesLayout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addComponent(prueba, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(111, Short.MAX_VALUE))
+            .addGroup(perfumesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(perfumesLayout.createSequentialGroup()
+                    .addGap(144, 144, 144)
+                    .addGroup(perfumesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(per1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(per2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(per3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(per4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(144, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -101,8 +154,11 @@ public class Crear extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        buscar nuevo = new buscar();
-        showPanel(nuevo);
+        prueba.setVisible(true);
+        per1.setVisible(false);
+        per2.setVisible(false);
+        per3.setVisible(false);
+        per4.setVisible(false);
         
         String ruta = ""; // Declara una variable de tipo String para almacenar la ruta del archivo elegido
         JFileChooser catalogo = new JFileChooser(); // Crea un objeto JFileChooser para mostrar el selector de archivos
@@ -117,36 +173,43 @@ public class Crear extends javax.swing.JPanel {
         if(respuesta == JFileChooser.APPROVE_OPTION){ // Si el usuario aprueba la selección del archivo
             ruta = catalogo.getSelectedFile().getAbsolutePath(); // Obtiene la ruta completa del archivo seleccionado y la guarda en la variable ruta
             Image per = new ImageIcon(ruta).getImage(); // Crea un objeto Image a partir de la ruta del archivo
-            ImageIcon perIco = new ImageIcon(per.getScaledInstance(nuevo.prueba.getWidth(), prueba.getHeight(), Image.SCALE_SMOOTH)); // Crea un objeto ImageIcon a partir del objeto Image y lo escala al tamaño de la etiqueta 5
+            ImageIcon perIco = new ImageIcon(per.getScaledInstance(prueba.getWidth(), prueba.getHeight(), Image.SCALE_SMOOTH)); // Crea un objeto ImageIcon a partir del objeto Image y lo escala al tamaño de la etiqueta 5
             prueba.setIcon(perIco); // Establece el objeto ImageIcon como el icono de la etiqueta 5
-        }
-        
-        String nombre = catalogo.getSelectedFile().getName(); // Obtiene el nombre del archivo seleccionado y lo guarda en una variable de tipo String
-        nombre = nombre.replace(".png", ""); // Elimina la extension '.png' del nombre
-        if(mapa.containsKey(nombre)){ // Comprobar si el mapa contiene la clave con el nombre de la imagen
-            int valor = mapa.get(nombre); // Obtiene el valor asociado a esa clave y lo guarda en una variable de tipo int
-            valor ++; // Incrementa el valor en uno
-            mapa.put(nombre, valor); // Actualiza el valor asociado a esa clave en el mapa
-            pastel2.setValue(nombre, valor); // Actualiza el valor del conjunto de datos para ese nombre
-            gra2.repaint(); // Repinta el panel gra2 para que se actualice la gráfica
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-
-    private void showPanel(JPanel nuevo){
-        nuevo.setSize(650,418);
-        nuevo.setLocation(0,0);
+    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
+        prueba.setVisible(false);
         
-        perfumes.removeAll();
-        perfumes.add(nuevo, BorderLayout.CENTER);
-        perfumes.revalidate();
-        perfumes.repaint();
+        per1.setVisible(true);
+        per2.setVisible(true);
+        per3.setVisible(true);
+        per4.setVisible(true);
+        
+        // Estos métodos asignan una imagen a cada botón de perfume usando una ruta relativa
+        SetImageButton(per1, "src/Imagenes-Perfumes/PCi1.png");
+        SetImageButton(per2, "src/Imagenes-Perfumes/PCi2.png");
+        SetImageButton(per3, "src/Imagenes-Perfumes/PCu1.png");
+        SetImageButton(per4, "src/Imagenes-Perfumes/PCu2.png");
+        
+    }//GEN-LAST:event_btnSeleccionarActionPerformed
+    
+    private void SetImageButton(JButton buttonName, String root){ // Este método recibe como parámetros un botón y una ruta de una imagen
+        ImageIcon image = new ImageIcon(root); // Crea un objeto ImageIcon a partir de la ruta de la imagen
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(buttonName.getWidth(),buttonName.getHeight(), Image.SCALE_DEFAULT)); // Crea otro objeto ImageIcon a partir del objeto anterior, pero escalando la imagen al tamaño del botón
+        buttonName.setIcon(icon); // Establece el objeto ImageIcon como el icono del botón
+        this.repaint(); // Repinta la ventana para reflejar los cambios
     }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnSeleccionar;
+    private javax.swing.JButton per1;
+    private javax.swing.JButton per2;
+    private javax.swing.JButton per3;
+    private javax.swing.JButton per4;
     private javax.swing.JPanel perfumes;
+    private javax.swing.JLabel prueba;
     // End of variables declaration//GEN-END:variables
 }
