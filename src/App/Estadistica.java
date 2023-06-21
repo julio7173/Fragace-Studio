@@ -1,11 +1,11 @@
 package App;
 
 class Estadistica extends javax.swing.JPanel {
-    
+      
     public Estadistica() {
         initComponents();
     }
-    
+        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -18,7 +18,7 @@ class Estadistica extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 153, 153));
 
         graficaCircular.setBackground(new java.awt.Color(102, 102, 102));
-        graficaCircular.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        graficaCircular.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         graficaCircular.setForeground(new java.awt.Color(0, 0, 0));
         graficaCircular.setText("CIRCULAR");
         graficaCircular.addActionListener(new java.awt.event.ActionListener() {
@@ -28,7 +28,7 @@ class Estadistica extends javax.swing.JPanel {
         });
 
         graficaBarra.setBackground(new java.awt.Color(102, 102, 102));
-        graficaBarra.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        graficaBarra.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         graficaBarra.setForeground(new java.awt.Color(0, 0, 0));
         graficaBarra.setText("BARRAS");
         graficaBarra.addActionListener(new java.awt.event.ActionListener() {
@@ -51,7 +51,7 @@ class Estadistica extends javax.swing.JPanel {
         );
 
         btnListo.setBackground(new java.awt.Color(102, 102, 102));
-        btnListo.setFont(new java.awt.Font("Castellar", 0, 14)); // NOI18N
+        btnListo.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         btnListo.setForeground(new java.awt.Color(0, 0, 0));
         btnListo.setText("LISTO");
 
@@ -83,13 +83,13 @@ class Estadistica extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void graficaCircularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graficaCircularActionPerformed
-        // TODO add your handling code here:
+        //
     }//GEN-LAST:event_graficaCircularActionPerformed
 
     private void graficaBarraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graficaBarraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_graficaBarraActionPerformed
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton btnListo;
     protected javax.swing.JButton graficaBarra;

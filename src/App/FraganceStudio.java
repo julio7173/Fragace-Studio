@@ -1,15 +1,24 @@
 package App;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 public class FraganceStudio extends javax.swing.JFrame {
    
     public FraganceStudio() {
+        //initComponents();
+        try {
+            UIManager.setLookAndFeel( new FlatDarkLaf() );
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize LaF" );
+        }
+        
         initComponents();
         this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/Icon/FRAGANCE STUDIO.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Icon/FRAGANCE_STUDIO-int.png")).getImage());
         this.setTitle("Fragrance Studio"); 
         
         Inicio b1 = new Inicio();
@@ -17,7 +26,7 @@ public class FraganceStudio extends javax.swing.JFrame {
         
         btnAnimar.setEnabled(false);
         btnEstadistica.setEnabled(false);
-        btnGuardar.setEnabled(false);
+        btnGuardar.setEnabled(false);        
     }
     
     protected void showPanel(JPanel p){
@@ -47,7 +56,7 @@ public class FraganceStudio extends javax.swing.JFrame {
         panelLateral.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnEstadistica.setBackground(new java.awt.Color(102, 102, 102));
-        btnEstadistica.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        btnEstadistica.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         btnEstadistica.setForeground(new java.awt.Color(0, 0, 0));
         btnEstadistica.setText("ESTADÍSTICAS");
         btnEstadistica.addActionListener(new java.awt.event.ActionListener() {
@@ -57,7 +66,7 @@ public class FraganceStudio extends javax.swing.JFrame {
         });
 
         btnAnimar.setBackground(new java.awt.Color(102, 102, 102));
-        btnAnimar.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        btnAnimar.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         btnAnimar.setForeground(new java.awt.Color(0, 0, 0));
         btnAnimar.setText("ANIMACIÓN");
         btnAnimar.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +76,7 @@ public class FraganceStudio extends javax.swing.JFrame {
         });
 
         btnGuardar.setBackground(new java.awt.Color(102, 102, 102));
-        btnGuardar.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(0, 0, 0));
         btnGuardar.setText("GUARDAR");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +86,7 @@ public class FraganceStudio extends javax.swing.JFrame {
         });
 
         btnCrear.setBackground(new java.awt.Color(102, 102, 102));
-        btnCrear.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        btnCrear.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         btnCrear.setForeground(new java.awt.Color(0, 0, 0));
         btnCrear.setText("CREACIÓN");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {

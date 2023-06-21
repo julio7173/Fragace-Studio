@@ -100,57 +100,34 @@ public class B_Seleccionar extends javax.swing.JPanel {
     private boolean perSelected = false;
     
     private void per1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_per1ActionPerformed
-        perSelected = !perSelected;
-        per2.setEnabled(!perSelected);
-        per3.setEnabled(!perSelected);
-        per4.setEnabled(!perSelected);
-        File archivo = new File("src/Imagenes-Perfumes/PCi1.png");
-        try{
-            prueba.seleccionarImagen(archivo);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        starButton(per2, per3, per4, "PCi1.png");
     }//GEN-LAST:event_per1ActionPerformed
 
     private void per2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_per2ActionPerformed
-        perSelected = !perSelected;
-        per1.setEnabled(!perSelected);
-        per3.setEnabled(!perSelected);
-        per4.setEnabled(!perSelected);
-        File archivo = new File("src/Imagenes-Perfumes/PCi2.png");
-        try{
-            prueba.seleccionarImagen(archivo);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        starButton(per1, per3, per4, "PCi2.png");
     }//GEN-LAST:event_per2ActionPerformed
 
     private void per3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_per3ActionPerformed
-        perSelected = !perSelected;
-        per1.setEnabled(!perSelected);
-        per2.setEnabled(!perSelected);
-        per4.setEnabled(!perSelected);
-        File archivo = new File("src/Imagenes-Perfumes/PCu1.png");
-        try{
-            prueba.seleccionarImagen(archivo);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        starButton(per1, per2, per4, "PCu1.png");
     }//GEN-LAST:event_per3ActionPerformed
 
     private void per4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_per4ActionPerformed
+        starButton(per1, per2, per3, "PCu2.png");
+    }//GEN-LAST:event_per4ActionPerformed
+
+    private void starButton(JButton uno, JButton dos, JButton tres, String nombreArchivo){
         perSelected = !perSelected;
-        per1.setEnabled(!perSelected);
-        per2.setEnabled(!perSelected);
-        per3.setEnabled(!perSelected);
-        File archivo = new File("src/Imagenes-Perfumes/PCu2.png");
+        uno.setEnabled(!perSelected);
+        dos.setEnabled(!perSelected);
+        tres.setEnabled(!perSelected);
+        File archivo = new File("src/Imagenes-Perfumes/" + nombreArchivo);
         try{
             prueba.seleccionarImagen(archivo);
         }catch(Exception e){
             e.printStackTrace();
         }
-    }//GEN-LAST:event_per4ActionPerformed
-
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton per1;

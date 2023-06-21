@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -55,6 +56,12 @@ public class Crear extends javax.swing.JPanel {
             manuApp.showPanel(ani);
             manuApp.btnAnimar.setEnabled(true);
             manuApp.btnCrear.setEnabled(false);
+        }else{
+            if(titulo.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "Debes elegir un título", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, "Debes elegir alguna imagen", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -71,7 +78,7 @@ public class Crear extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 153, 153));
 
         btnBuscar.setBackground(new java.awt.Color(102, 102, 102));
-        btnBuscar.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        btnBuscar.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +88,7 @@ public class Crear extends javax.swing.JPanel {
         });
 
         btnSeleccionar.setBackground(new java.awt.Color(102, 102, 102));
-        btnSeleccionar.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        btnSeleccionar.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         btnSeleccionar.setForeground(new java.awt.Color(0, 0, 0));
         btnSeleccionar.setText("SELECCIONAR");
         btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +111,7 @@ public class Crear extends javax.swing.JPanel {
         );
 
         btnListo.setBackground(new java.awt.Color(102, 102, 102));
-        btnListo.setFont(new java.awt.Font("Castellar", 0, 14)); // NOI18N
+        btnListo.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         btnListo.setForeground(new java.awt.Color(0, 0, 0));
         btnListo.setText("LISTO");
         btnListo.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +121,7 @@ public class Crear extends javax.swing.JPanel {
         });
 
         titulo.setBackground(new java.awt.Color(0, 204, 204));
-        titulo.setFont(new java.awt.Font("Castellar", 0, 14)); // NOI18N
+        titulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         titulo.setForeground(new java.awt.Color(0, 0, 0));
         titulo.setText("Título");
         titulo.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +196,6 @@ public class Crear extends javax.swing.JPanel {
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
         B_Seleccionar sel = new B_Seleccionar(this);
         showPanel(sel);
-        //seleccionarImagen();
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     private void btnListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListoActionPerformed

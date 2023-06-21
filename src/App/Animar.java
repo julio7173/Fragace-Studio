@@ -1,10 +1,16 @@
 package App;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class Animar extends javax.swing.JPanel {
@@ -21,11 +27,13 @@ public class Animar extends javax.swing.JPanel {
         }
         
         predeterminado.setModel(modeloPreAni);
+        predeterminado.setSelectedIndex(0);
         frames.setModel(modeloFotoAni); 
+        frames.setSelectedIndex(0);
     }
     
-    String[] opcionesPreAni = {"Introduccion", "Despedida"};
-    String[] opcionesFotoAni = {"Caida Derecha", "Caida Izquierda"};
+    String[] opcionesPreAni = {"","Introduccion", "Despedida"};
+    String[] opcionesFotoAni = {"","Caida Derecha", "Caida Izquierda"};
     
     DefaultComboBoxModel modeloPreAni = new DefaultComboBoxModel(opcionesPreAni);
     DefaultComboBoxModel modeloFotoAni = new DefaultComboBoxModel(opcionesFotoAni);
@@ -45,7 +53,7 @@ public class Animar extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 153, 153));
 
         predeterminado.setBackground(new java.awt.Color(102, 102, 102));
-        predeterminado.setFont(new java.awt.Font("Castellar", 0, 10)); // NOI18N
+        predeterminado.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
         predeterminado.setForeground(new java.awt.Color(0, 0, 0));
         predeterminado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         predeterminado.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +63,7 @@ public class Animar extends javax.swing.JPanel {
         });
 
         frames.setBackground(new java.awt.Color(102, 102, 102));
-        frames.setFont(new java.awt.Font("Castellar", 0, 10)); // NOI18N
+        frames.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
         frames.setForeground(new java.awt.Color(0, 0, 0));
         frames.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         frames.addActionListener(new java.awt.event.ActionListener() {
@@ -64,11 +72,11 @@ public class Animar extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("PREDETERMINADO");
 
-        jLabel2.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("FRAMES");
 
@@ -88,11 +96,11 @@ public class Animar extends javax.swing.JPanel {
             .addGroup(animacionesLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(animo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         btnListo.setBackground(new java.awt.Color(102, 102, 102));
-        btnListo.setFont(new java.awt.Font("Castellar", 0, 14)); // NOI18N
+        btnListo.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         btnListo.setForeground(new java.awt.Color(0, 0, 0));
         btnListo.setText("LISTO");
         btnListo.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +149,81 @@ public class Animar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void framesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_framesActionPerformed
-        // TODO add your handling code here:
+        String opcion = (String)frames.getSelectedItem();
+        switch(opcion){
+            case "Caida Derecha":
+                animo.setPreferredSize(new Dimension(210, 220));
+                imagenAnimar = new ImageIcon(imagenAnimar.getImage().getScaledInstance(animo.getWidth(), animo.getHeight(), Image.SCALE_SMOOTH));
+                animo.setIcon(imagenAnimar);
+                int xOriginal_3 = animo.getX();
+                int yOriginal_3 = animo.getY();
+                Timer timer_3 = new Timer(2000, new ActionListener(){
+                    int paso = 0;
+                    double angulo = 0;
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        paso++;
+                        if(paso <= 9){
+                            angulo += Math.toRadians(10);
+                            BufferedImage imagen = toBufferedImage(imagenAnimar.getImage());
+                            imagen = rotateImage(imagen, angulo);
+                            ImageIcon icono = new ImageIcon(imagen);
+                            animo.setIcon(icono);
+                            int width = imagen.getWidth();
+                            int height = imagen.getHeight();
+                            int x = xOriginal_3 + (animo.getWidth() - width)/2;
+                            int y = yOriginal_3 + (animo.getHeight() - height)/2;
+                            animo.setBounds(x,y,width,height);
+                        }else if(paso == 10){
+                            ((Timer)e.getSource()).setDelay(3000);
+                        }else{
+                            ((Timer)e.getSource()).stop();
+                            animo.setIcon(imagenAnimar);
+                            animo.setBounds(xOriginal_3, yOriginal_3, animo.getWidth(), animo.getHeight());
+                            //animo.setLocation(xOriginal_3, yOriginal_3);
+                        }
+                    }
+                });
+                timer_3.start();
+                break;
+            case "Caida Izquierda": 
+                animo.setPreferredSize(new Dimension(210, 220));
+                imagenAnimar = new ImageIcon(imagenAnimar.getImage().getScaledInstance(animo.getWidth(), animo.getHeight(), Image.SCALE_SMOOTH));
+                animo.setIcon(imagenAnimar);
+                int xOriginal_4 = animo.getX();
+                int yOriginal_4 = animo.getY();
+                Timer timer_4 = new Timer(2000, new ActionListener(){
+                    int paso = 0;
+                    double angulo = 0;
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        paso++;
+                        if(paso <= 9){
+                            angulo -= Math.toRadians(10);
+                            BufferedImage imagen = toBufferedImage(imagenAnimar.getImage());
+                            imagen = rotateImage(imagen, angulo);
+                            ImageIcon icono = new ImageIcon(imagen);
+                            animo.setIcon(icono);
+                            int width = imagen.getWidth();
+                            int height = imagen.getHeight();
+                            int x = xOriginal_4 + (animo.getWidth() - width)/2;
+                            int y = yOriginal_4 + (animo.getHeight() - height)/2;
+                            animo.setBounds(x,y,width,height);
+                        }else if(paso == 10){
+                            ((Timer)e.getSource()).setDelay(3000);
+                        }else{
+                            ((Timer)e.getSource()).stop();
+                            animo.setIcon(imagenAnimar);
+                            animo.setBounds(xOriginal_4, yOriginal_4, animo.getWidth(), animo.getHeight());
+                            //animo.setLocation(xOriginal_3, yOriginal_3);
+                        }
+                    }
+                });
+                timer_4.start();
+                break;
+            default:
+                break;
+        }
     }//GEN-LAST:event_framesActionPerformed
 
     private void predeterminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_predeterminadoActionPerformed
@@ -199,9 +281,42 @@ public class Animar extends javax.swing.JPanel {
     }//GEN-LAST:event_predeterminadoActionPerformed
 
     private void btnListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListoActionPerformed
-        // TODO add your handling code here:
+        String opcionPre = (String)predeterminado.getSelectedItem();
+        String opcionFra = (String)frames.getSelectedItem();
+        if(opcionPre != null && !opcionPre.isEmpty()){
+            Estadistica est = new Estadistica();
+            FraganceStudio fs = (FraganceStudio)this.getTopLevelAncestor();
+            fs.showPanel(est);
+            fs.btnAnimar.setEnabled(false);
+            fs.btnEstadistica.setEnabled(true);
+        }else if(opcionFra != null && !opcionFra.isEmpty()){
+            Estadistica est = new Estadistica();
+            FraganceStudio fs = (FraganceStudio)this.getTopLevelAncestor();
+            fs.showPanel(est);
+            fs.btnAnimar.setEnabled(false);
+            fs.btnEstadistica.setEnabled(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Debes elegir alguna animación", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnListoActionPerformed
 
+    public static BufferedImage toBufferedImage(Image img){
+        if(img instanceof BufferedImage){
+            return (BufferedImage)img;
+        }
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        Graphics g = bimage.createGraphics();
+        g.drawImage(img, 0, 0, null);
+        g.dispose();
+        return bimage;
+    }
+    
+    public static BufferedImage rotateImage(BufferedImage image, double angle){
+        AffineTransform transform = new AffineTransform();
+        transform.rotate(angle, image.getWidth()/2, image.getHeight()/2);
+        AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+        return op.filter(image, null);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel animaciones;
