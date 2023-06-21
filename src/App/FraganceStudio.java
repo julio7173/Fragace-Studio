@@ -9,26 +9,28 @@ import javax.swing.UIManager;
 public class FraganceStudio extends javax.swing.JFrame {
    
     public FraganceStudio() {
-        //initComponents();
         try {
+            // Establece el aspecto visual de FlatLaf en modo oscuro
             UIManager.setLookAndFeel( new FlatDarkLaf() );
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize LaF" );
         }
         
         initComponents();
+        // Centra la ventana en la pantalla
         this.setLocationRelativeTo(null);
+        // Establece el icono y el título de la ventana
         setIconImage(new ImageIcon(getClass().getResource("/Icon/FRAGANCE_STUDIO-int.png")).getImage());
         this.setTitle("Fragrance Studio"); 
-        
+        // Crea un panel de inicio y lo muestra en la ventana
         Inicio b1 = new Inicio();
         showPanel(b1);
-        
+        // Deshabilita algunos botones al inicio
         btnAnimar.setEnabled(false);
         btnEstadistica.setEnabled(false);
-        btnGuardar.setEnabled(false);        
+        btnGuardar.setEnabled(false);
     }
-    
+    // Método que muestra un panel dado en la ventana, reemplazando el anterior
     protected void showPanel(JPanel p){
         p.setSize(650,500);
         p.setLocation(0,0);
@@ -59,21 +61,11 @@ public class FraganceStudio extends javax.swing.JFrame {
         btnEstadistica.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         btnEstadistica.setForeground(new java.awt.Color(0, 0, 0));
         btnEstadistica.setText("ESTADÍSTICAS");
-        btnEstadistica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEstadisticaActionPerformed(evt);
-            }
-        });
 
         btnAnimar.setBackground(new java.awt.Color(102, 102, 102));
         btnAnimar.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         btnAnimar.setForeground(new java.awt.Color(0, 0, 0));
         btnAnimar.setText("ANIMACIÓN");
-        btnAnimar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAnimarActionPerformed(evt);
-            }
-        });
 
         btnGuardar.setBackground(new java.awt.Color(102, 102, 102));
         btnGuardar.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
@@ -156,23 +148,16 @@ public class FraganceStudio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticaActionPerformed
-        Estadistica est = new Estadistica();
-        showPanel(est);
-    }//GEN-LAST:event_btnEstadisticaActionPerformed
-
-    private void btnAnimarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnimarActionPerformed
+    // Método que se ejecuta al presionar el botón de guardar
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {
         //
-    }//GEN-LAST:event_btnAnimarActionPerformed
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        //
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+    }
+    // Método que se ejecuta al presionar el botón de crear
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {
+        // Crea un panel de crear y lo muestra en la ventana, pasándole una referencia a esta clase y al JPanel contenido
         Crear nuevo = new Crear(this, contenido);
         showPanel(nuevo);
-    }//GEN-LAST:event_btnCrearActionPerformed
+    }
 
     
     /**
@@ -212,12 +197,12 @@ public class FraganceStudio extends javax.swing.JFrame {
     }
     
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Declaración de variables - no modificar 
     protected javax.swing.JButton btnAnimar;
     protected javax.swing.JButton btnCrear;
     protected javax.swing.JButton btnEstadistica;
     protected javax.swing.JButton btnGuardar;
     private javax.swing.JPanel contenido;
     private javax.swing.JPanel panelLateral;
-    // End of variables declaration//GEN-END:variables
+    // Fin de declaración de variables
 }

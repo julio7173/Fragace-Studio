@@ -22,6 +22,11 @@ public class Crear extends javax.swing.JPanel {
     JPanel panelContenido = null;
     ImageIcon imagenSelec = null;
     
+    int contadorPCi1 = 0;
+    int contadorPCi2 = 0;
+    int contadorPCu1 = 0;
+    int contadorPCu2 = 0;
+    
     boolean imagenSeleccionada = false;
     
     public Crear(FraganceStudio manuApp, JPanel panelContenido){
@@ -47,6 +52,23 @@ public class Crear extends javax.swing.JPanel {
     protected void seleccionarImagen(File archivo) throws MalformedURLException{
         imagenSelec = new ImageIcon(archivo.toURI().toURL());
         imagenSeleccionada = true;
+        
+        switch (archivo.getName()) {
+            case "PCi1.png":
+                contadorPCi1++;
+                break;
+            case "PCi2.png":
+                contadorPCi2++;
+                break;
+            case "PCu1.png":
+                contadorPCu1++;
+                break;
+            case "PCu2.png":
+                contadorPCu2++;
+                break;
+            default:
+                break;
+        }
     }
     
     private void verificarSeleccion(){

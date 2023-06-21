@@ -1,9 +1,27 @@
 package App;
+/*
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;*/
 
 class Estadistica extends javax.swing.JPanel {
-      
-    public Estadistica() {
+    
+    /*int contadorPCi1 = 0;
+    int contadorPCi2 = 0;
+    int contadorPCu1 = 0;
+    int contadorPCu2 = 0;*/
+    
+    public Estadistica(/*Crear crear*/) {
         initComponents();
+        
+        /*contadorPCi1 = crear.contadorPCi1;
+        contadorPCi2 = crear.contadorPCi2;
+        contadorPCu1 = crear.contadorPCu1;
+        contadorPCu2 = crear.contadorPCu2;*/
+        
     }
         
     @SuppressWarnings("unchecked")
@@ -83,7 +101,20 @@ class Estadistica extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void graficaCircularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graficaCircularActionPerformed
-        //
+        /*DefaultPieDataset perMB = new DefaultPieDataset();
+        perMB.setValue("PCi1", contadorPCi1);
+        perMB.setValue("PCi2", contadorPCi2);
+        perMB.setValue("PCu1", contadorPCu1);
+        perMB.setValue("PCu2", contadorPCu2);
+        JFreeChart chart = ChartFactory.createPieChart("EL PERFUME MÁS BUSCADO", perMB , true, true, false);
+        ChartPanel panel = new ChartPanel(chart);
+        panel.setPreferredSize(new Dimension(324,208));
+        graficas.setLayout(new BorderLayout());
+        graficas.add(panel, BorderLayout.NORTH);
+        graficas.validate();
+        //graficas.removeAll();
+        //graficas.add(panel, BorderLayout.CENTER);
+        //graficas.validate();*/
     }//GEN-LAST:event_graficaCircularActionPerformed
 
     private void graficaBarraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graficaBarraActionPerformed
