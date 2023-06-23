@@ -5,7 +5,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.net.MalformedURLException;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -16,29 +15,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Crear extends javax.swing.JPanel {
     
-    HashMap<String, Integer> mapa;
-    String nombreProyecto = null;
-    FraganceStudio manuApp = null;
+    //String nombreProyecto = null;
+    FraganceStudio app = null;
     JPanel panelContenido = null;
     ImageIcon imagenSelec = null;
-    
-    int contadorPCi1 = 0;
-    int contadorPCi2 = 0;
-    int contadorPCu1 = 0;
-    int contadorPCu2 = 0;
-    
+
     boolean imagenSeleccionada = false;
     
-    public Crear(FraganceStudio manuApp, JPanel panelContenido){
+    public Crear(FraganceStudio app, JPanel panelContenido){
         initComponents();
-        this.manuApp = manuApp;
+        this.app = app;
         this.panelContenido = panelContenido;
-        
-        mapa = new HashMap();
-        mapa.put("PCi1", 0);
-        mapa.put("PCi2", 0);
-        mapa.put("PCu1", 0);
-        mapa.put("PCu2", 0);   
         
         titulo.addMouseListener(new MouseAdapter() {
             @Override
@@ -46,38 +33,20 @@ public class Crear extends javax.swing.JPanel {
               titulo.setText("");
             }
         });
-        
     }
     
     protected void seleccionarImagen(File archivo) throws MalformedURLException{
         imagenSelec = new ImageIcon(archivo.toURI().toURL());
         imagenSeleccionada = true;
-        
-        switch (archivo.getName()) {
-            case "PCi1.png":
-                contadorPCi1++;
-                break;
-            case "PCi2.png":
-                contadorPCi2++;
-                break;
-            case "PCu1.png":
-                contadorPCu1++;
-                break;
-            case "PCu2.png":
-                contadorPCu2++;
-                break;
-            default:
-                break;
-        }
     }
     
     private void verificarSeleccion(){
         if(!titulo.getText().isEmpty() && imagenSeleccionada){
-            nombreProyecto = titulo.getText();
+            //nombreProyecto = titulo.getText();
             Animar ani = new Animar(imagenSelec);
-            manuApp.showPanel(ani);
-            manuApp.btnAnimar.setEnabled(true);
-            manuApp.btnCrear.setEnabled(false);
+            app.showPanel(ani);
+            app.btnAnimar.setEnabled(true);
+            app.btnCrear.setEnabled(false);
         }else{
             if(titulo.getText().isEmpty()){
                 JOptionPane.showMessageDialog(this, "Debes elegir un título", "Error", JOptionPane.ERROR_MESSAGE);
@@ -182,28 +151,44 @@ public class Crear extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public static int[] frecuenciasMB = new int[4];
+    
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
-        String ruta = ""; // Declara una variable de tipo String para almacenar la ruta del archivo elegido
-        JFileChooser catalogo = new JFileChooser(); // Crea un objeto JFileChooser para mostrar el selector de archivos
-        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("png", "png"); // Crea un objeto FileNameExtensionFilter para filtrar los archivos con extensión png
-        catalogo.setFileFilter(filtrado); // Establece el objeto FileNameExtensionFilter como el filtro de archivos del objeto JFileChooser
-        String rutaPer = System.getProperty("user.dir") + "/src/Imagenes-Perfumes"; // Obtiene la ruta del directorio usando la propiedad user.dir
-        File dirPer = new File(rutaPer); // Crea un objeto File con la ruta del directorio
-        catalogo.setCurrentDirectory(dirPer); // Establece el directorio actual del selector de archivos
+        String ruta = "";
+        JFileChooser catalogo = new JFileChooser();
+        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("png", "png");
+        catalogo.setFileFilter(filtrado);
+        String rutaPer = System.getProperty("user.dir") + "/src/Imagenes-Perfumes";
+        File dirPer = new File(rutaPer);
+        catalogo.setCurrentDirectory(dirPer);
 
-        int respuesta = catalogo.showOpenDialog(this); // Muestra el selector de archivos y guarda la respuesta del usuario en una variable de tipo int
+        int respuesta = catalogo.showOpenDialog(this);
         
         if(respuesta == JFileChooser.APPROVE_OPTION){ try {
-            // Si el usuario aprueba la selección del archivo
-            ruta = catalogo.getSelectedFile().getAbsolutePath(); // Obtiene la ruta completa del archivo seleccionado y la guarda en la variable ruta
+            ruta = catalogo.getSelectedFile().getAbsolutePath();
             dirPer = catalogo.getSelectedFile();
             seleccionarImagen(dirPer);
+            switch (dirPer.getName()) {
+                case "PCi1.png":
+                    frecuenciasMB[0]++;
+                    break;
+                case "PCi2.png":
+                    frecuenciasMB[1]++;
+                    break;
+                case "PCu1.png":
+                    frecuenciasMB[2]++;
+                    break;
+                case "PCu2.png":
+                    frecuenciasMB[3]++;
+                    break;
+                default:
+                    break;
+            }
             } catch (MalformedURLException ex) {
                 Logger.getLogger(Crear.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+              
         if (perfumes.getComponentCount () > 0) {
             B_Buscar bus = (B_Buscar)perfumes.getComponent(0);
             bus.mostrarImagen(dirPer);

@@ -22,7 +22,7 @@ public class Animar extends javax.swing.JPanel {
         initComponents();
         
         if(imagenAnimar != null){
-            imagenAnimar = new ImageIcon(imagenAnimar.getImage().getScaledInstance(/*animo.getPreferredSize().width*/210, /*animo.getPreferredSize().height*/220, Image.SCALE_SMOOTH));
+            imagenAnimar = new ImageIcon(imagenAnimar.getImage().getScaledInstance(210, 220, Image.SCALE_SMOOTH));
             animo.setIcon(imagenAnimar);
         }
         
@@ -180,7 +180,6 @@ public class Animar extends javax.swing.JPanel {
                             ((Timer)e.getSource()).stop();
                             animo.setIcon(imagenAnimar);
                             animo.setBounds(xOriginal_3, yOriginal_3, animo.getWidth(), animo.getHeight());
-                            //animo.setLocation(xOriginal_3, yOriginal_3);
                         }
                     }
                 });
@@ -215,7 +214,6 @@ public class Animar extends javax.swing.JPanel {
                             ((Timer)e.getSource()).stop();
                             animo.setIcon(imagenAnimar);
                             animo.setBounds(xOriginal_4, yOriginal_4, animo.getWidth(), animo.getHeight());
-                            //animo.setLocation(xOriginal_3, yOriginal_3);
                         }
                     }
                 });
@@ -250,7 +248,7 @@ public class Animar extends javax.swing.JPanel {
                     }
                 });
                 timer_1.start(); 
-		        break;
+		break;
             case "Despedida": 
                 int xOriginal_2 = animo.getX();
                 int yOriginal_2 = animo.getY();

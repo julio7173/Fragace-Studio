@@ -27,7 +27,7 @@ public class B_Buscar extends javax.swing.JPanel {
 
         try {
             ImageIcon imagen = new ImageIcon (archivo.toURI ().toURL ());
-            ImageIcon imagenEscalada = new ImageIcon (imagen.getImage().getScaledInstance (/*prueba.getWidth ()*/220, /*prueba.getHeight ()*/225, Image.SCALE_SMOOTH));
+            ImageIcon imagenEscalada = new ImageIcon (imagen.getImage().getScaledInstance (220, 225, Image.SCALE_SMOOTH));
             prueba.setIcon (imagenEscalada);
         } catch (Exception e) {
             e.printStackTrace ();

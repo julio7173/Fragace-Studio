@@ -27,7 +27,7 @@ public class B_Seleccionar extends javax.swing.JPanel {
 
     private void setImageButton(JButton buttonName, String root){
         ImageIcon image = new ImageIcon(root);
-        Icon icon = new ImageIcon(image.getImage().getScaledInstance(buttonName.getWidth(),buttonName.getHeight(), Image.SCALE_DEFAULT)); // Crea otro objeto ImageIcon a partir del objeto anterior, pero escalando la imagen al tamaño del botón
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(buttonName.getWidth(),buttonName.getHeight(), Image.SCALE_DEFAULT));
         buttonName.setIcon(icon);
         this.repaint();
     }
@@ -100,22 +100,24 @@ public class B_Seleccionar extends javax.swing.JPanel {
     private boolean perSelected = false;
     
     private void per1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_per1ActionPerformed
-        starButton(per2, per3, per4, "PCi1.png");
+        starButton(per2, per3, per4, "PCi1.png", 0);
     }//GEN-LAST:event_per1ActionPerformed
 
     private void per2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_per2ActionPerformed
-        starButton(per1, per3, per4, "PCi2.png");
+        starButton(per1, per3, per4, "PCi2.png", 1);
     }//GEN-LAST:event_per2ActionPerformed
 
     private void per3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_per3ActionPerformed
-        starButton(per1, per2, per4, "PCu1.png");
+        starButton(per1, per2, per4, "PCu1.png", 2);
     }//GEN-LAST:event_per3ActionPerformed
 
     private void per4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_per4ActionPerformed
-        starButton(per1, per2, per3, "PCu2.png");
+        starButton(per1, per2, per3, "PCu2.png", 3);
     }//GEN-LAST:event_per4ActionPerformed
 
-    private void starButton(JButton uno, JButton dos, JButton tres, String nombreArchivo){
+    public static int[] frecuenciasMS = new int[4];
+    
+    private void starButton(JButton uno, JButton dos, JButton tres, String nombreArchivo, int indice){
         perSelected = !perSelected;
         uno.setEnabled(!perSelected);
         dos.setEnabled(!perSelected);
@@ -123,6 +125,7 @@ public class B_Seleccionar extends javax.swing.JPanel {
         File archivo = new File("src/Imagenes-Perfumes/" + nombreArchivo);
         try{
             prueba.seleccionarImagen(archivo);
+            frecuenciasMS[indice]++;
         }catch(Exception e){
             e.printStackTrace();
         }

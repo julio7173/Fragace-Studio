@@ -2,12 +2,17 @@ package App;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 public class FraganceStudio extends javax.swing.JFrame {
    
+    boolean presionado = false;
+    
     public FraganceStudio() {
         try {
             // Establece el aspecto visual de FlatLaf en modo oscuro
@@ -29,6 +34,34 @@ public class FraganceStudio extends javax.swing.JFrame {
         btnAnimar.setEnabled(false);
         btnEstadistica.setEnabled(false);
         btnGuardar.setEnabled(false);
+        
+        ImageIcon iconOFF = new ImageIcon("src/Microfonos/OFF.png");
+        ImageIcon iconON = new ImageIcon("src/Microfonos/ON.png");
+        
+        Image imagenOFF = iconOFF.getImage();
+        Image imagenON = iconON.getImage();
+        
+        Image nuevaImagenOFF = imagenOFF.getScaledInstance(voz.getWidth(), voz.getHeight(), Image.SCALE_SMOOTH);
+        Image nuevaImagenON = imagenON.getScaledInstance(voz.getWidth(), voz.getHeight(), Image.SCALE_SMOOTH);
+        
+        ImageIcon nuevoIconoOFF = new ImageIcon(nuevaImagenOFF);
+        ImageIcon nuevoIconoON = new ImageIcon(nuevaImagenON);
+        
+        voz.setIcon(nuevoIconoOFF);
+        
+        ActionListener microfono = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(!presionado){
+                    voz.setIcon(nuevoIconoON);
+                    presionado = true;
+                }else{
+                    voz.setIcon(nuevoIconoOFF);
+                    presionado = false;
+                }
+            }
+        };
+        voz.addActionListener(microfono); 
     }
     // Método que muestra un panel dado en la ventana, reemplazando el anterior
     protected void showPanel(JPanel p){
@@ -51,6 +84,7 @@ public class FraganceStudio extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnCrear = new javax.swing.JButton();
         contenido = new javax.swing.JPanel();
+        voz = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,33 +134,51 @@ public class FraganceStudio extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        voz.setBackground(new java.awt.Color(51, 51, 51));
+        voz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vozActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLateralLayout = new javax.swing.GroupLayout(panelLateral);
         panelLateral.setLayout(panelLateralLayout);
         panelLateralLayout.setHorizontalGroup(
             panelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLateralLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(panelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAnimar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEstadistica, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
-                .addGap(35, 35, 35)
+                    .addGroup(panelLateralLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(panelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAnimar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEstadistica, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
+                        .addGap(26, 26, 26))
+                    .addGroup(panelLateralLayout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(voz, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelLateralLayout.setVerticalGroup(
             panelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLateralLayout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
-                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAnimar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnEstadistica, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
-            .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(panelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLateralLayout.createSequentialGroup()
+                        .addComponent(voz, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAnimar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEstadistica, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 60, Short.MAX_VALUE))
+                    .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,17 +200,19 @@ public class FraganceStudio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void vozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vozActionPerformed
+        
+    }//GEN-LAST:event_vozActionPerformed
+    
     // Método que se ejecuta al presionar el botón de guardar
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {
         //
-    }
+    }                                          
     // Método que se ejecuta al presionar el botón de crear
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {
-        // Crea un panel de crear y lo muestra en la ventana, pasándole una referencia a esta clase y al JPanel contenido
         Crear nuevo = new Crear(this, contenido);
         showPanel(nuevo);
-    }
-
+    }                                        
     
     /**
      * @param args the command line arguments
@@ -196,13 +250,13 @@ public class FraganceStudio extends javax.swing.JFrame {
         });
     }
     
-    
-    // Declaración de variables - no modificar 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton btnAnimar;
     protected javax.swing.JButton btnCrear;
     protected javax.swing.JButton btnEstadistica;
     protected javax.swing.JButton btnGuardar;
     private javax.swing.JPanel contenido;
     private javax.swing.JPanel panelLateral;
-    // Fin de declaración de variables
+    private javax.swing.JButton voz;
+    // End of variables declaration//GEN-END:variables
 }
