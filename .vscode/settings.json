@@ -3,6 +3,8 @@
         "lib/**/*.jar",
         "src/Librerias/flatlaf-3.1.1.jar",
         "src/Librerias/jcommon-1.0.23.jar",
-        "src/Librerias/jfreechart-1.0.19.jar"
+        "src/Librerias/jfreechart-1.0.19.jar",
+        "src/Librerias/sphinx4-core-5prealpha.jar",
+        "src/Librerias/sphinx4-data-5prealpha.jar"
     ]
 }

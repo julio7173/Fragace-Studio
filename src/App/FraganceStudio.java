@@ -5,12 +5,16 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 
 public class FraganceStudio extends javax.swing.JFrame {
-   
+    
     boolean presionado = false;
     
     public FraganceStudio() {
@@ -61,7 +65,7 @@ public class FraganceStudio extends javax.swing.JFrame {
                 }
             }
         };
-        voz.addActionListener(microfono); 
+        voz.addActionListener(microfono);
     }
     // Método que muestra un panel dado en la ventana, reemplazando el anterior
     protected void showPanel(JPanel p){
@@ -201,16 +205,52 @@ public class FraganceStudio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void vozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vozActionPerformed
-        
+        //
     }//GEN-LAST:event_vozActionPerformed
+    
+    Crear nuevo = null;
+    
+    // Método que recibe un objeto de tipo Crear y retorna el texto del JTextField titulo
+    protected String getTituloPerfume(String s){
+        return s;
+    }
+    
+    public void guardarGraficas(ChartPanel[] graficas, String folder){
+        for(ChartPanel grafica : graficas){
+            String titulo = grafica.getChart().getTitle().getText();
+            String ruta = System.getProperty("user.home") + "/Desktop/" + folder + "/" + titulo + ".png";
+            File archivo = new File(ruta);
+            try{
+                ChartUtilities.saveChartAsPNG(archivo, grafica.getChart(), 324, 208);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Hubo un error al guardar la gráfica " + titulo, "Error", JOptionPane.ERROR_MESSAGE); 
+            }
+        }
+    }
     
     // Método que se ejecuta al presionar el botón de guardar
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {
-        //
+        if(nuevo != null){
+            String nombreFolder = getTituloPerfume(nuevo.tituloPerfume);
+            String rutaEscritorio = System.getProperty("user.home") + "/Desktop";
+            File folder = new File(rutaEscritorio + "/" + nombreFolder);
+            boolean creado = folder.mkdir();
+            if(creado){
+                JOptionPane.showMessageDialog(this, "El folder se creó con éxito", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                Estadistica est = new Estadistica();
+                ChartPanel[] graficas = est.getGraficasGeneradas();
+                guardarGraficas(graficas, nombreFolder);
+                btnCrear.setEnabled(true);
+                btnCrearActionPerformed(evt);
+                btnGuardar.setEnabled(false);
+            }else{
+                JOptionPane.showMessageDialog(this, "Hubo un error al crear el folder", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }                                          
     // Método que se ejecuta al presionar el botón de crear
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {
-        Crear nuevo = new Crear(this, contenido);
+        nuevo = new Crear(this, contenido);
         showPanel(nuevo);
     }                                        
     

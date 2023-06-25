@@ -15,10 +15,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Crear extends javax.swing.JPanel {
     
-    //String nombreProyecto = null;
-    FraganceStudio app = null;
-    JPanel panelContenido = null;
-    ImageIcon imagenSelec = null;
+    FraganceStudio app;
+    JPanel panelContenido;
+    ImageIcon imagenSelec;
+    public String tituloPerfume;
 
     boolean imagenSeleccionada = false;
     
@@ -42,7 +42,7 @@ public class Crear extends javax.swing.JPanel {
     
     private void verificarSeleccion(){
         if(!titulo.getText().isEmpty() && imagenSeleccionada){
-            //nombreProyecto = titulo.getText();
+            tituloPerfume = titulo.getText();
             Animar ani = new Animar(imagenSelec);
             app.showPanel(ani);
             app.btnAnimar.setEnabled(true);

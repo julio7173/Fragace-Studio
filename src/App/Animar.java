@@ -147,11 +147,14 @@ public class Animar extends javax.swing.JPanel {
                 .addComponent(animaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public static int[] frecuenciasF = new int[2];
+    
     private void framesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_framesActionPerformed
         String opcion = (String)frames.getSelectedItem();
         switch(opcion){
             case "Caida Derecha":
+                frecuenciasF[0]++;
                 animo.setPreferredSize(new Dimension(210, 220));
                 imagenAnimar = new ImageIcon(imagenAnimar.getImage().getScaledInstance(animo.getWidth(), animo.getHeight(), Image.SCALE_SMOOTH));
                 animo.setIcon(imagenAnimar);
@@ -185,7 +188,8 @@ public class Animar extends javax.swing.JPanel {
                 });
                 timer_3.start();
                 break;
-            case "Caida Izquierda": 
+            case "Caida Izquierda":
+                frecuenciasF[1]++;
                 animo.setPreferredSize(new Dimension(210, 220));
                 imagenAnimar = new ImageIcon(imagenAnimar.getImage().getScaledInstance(animo.getWidth(), animo.getHeight(), Image.SCALE_SMOOTH));
                 animo.setIcon(imagenAnimar);
@@ -224,10 +228,13 @@ public class Animar extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_framesActionPerformed
 
+    public static int[] frecuenciasP = new int[2];
+    
     private void predeterminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_predeterminadoActionPerformed
         String opcion = (String)predeterminado.getSelectedItem();
         switch(opcion){
-            case "Introduccion": 
+            case "Introduccion":
+                frecuenciasP[0]++;
                 int xOriginal_1 = animo.getX();
                 int yOriginal_1 = animo.getY();
                 Timer timer_1 = new Timer(10, new ActionListener(){
@@ -249,7 +256,8 @@ public class Animar extends javax.swing.JPanel {
                 });
                 timer_1.start(); 
 		break;
-            case "Despedida": 
+            case "Despedida":
+                frecuenciasP[1]++;
                 int xOriginal_2 = animo.getX();
                 int yOriginal_2 = animo.getY();
                 Timer timer_2 = new Timer(10, new ActionListener(){
