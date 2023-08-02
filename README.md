@@ -1,7 +1,7 @@
 # App Fragance Studio
 
 ## App para generar gif, estadísticas y guardarlas en un folder
-![Imagen](../Fragance%20Studio/src/Vistas/Inicio.png)
+![Imagen](../src/Vistas/Inicio.png)
 
 
 ## Funcionamiento
